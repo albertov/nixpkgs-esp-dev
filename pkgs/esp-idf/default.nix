@@ -1,5 +1,5 @@
 { rev ? "v5.1.2"
-, sha256 ? "sha256-uEf3/3NPH+E39VgQ02AbxTG7nmG5bQlhwk/WcTeAUfg="
+, sha256 ? "sha256-qjZ438LUQLzyQDKkeo4WMO0jxfkFh6dReuLq/6rftpw="
 , toolsToInclude ? [
     "xtensa-esp-elf-gdb"
     "riscv32-esp-elf-gdb"
@@ -40,6 +40,7 @@ let
     rev = rev;
     sha256 = sha256;
     fetchSubmodules = true;
+    leaveDotGit = true;
   };
 
   allTools = callPackage (import ./tools.nix) {
@@ -120,6 +121,10 @@ stdenv.mkDerivation rec {
   dontUseNinjaCheck = true;
 
   installPhase = ''
+    # make esp-idf cmake git version detection happy
+    mkdir -p .git/refs/heads
+    awk '!/^#/{print ''$1}' .git/packed-refs > .git/refs/heads/fetchgit
+
     mkdir -p $out
     cp -rv . $out/
 
