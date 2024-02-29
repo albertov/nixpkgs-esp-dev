@@ -169,6 +169,28 @@ rec {
     };
   };
 
+  esp-idf-nvs-partition-gen = buildPythonPackage rec {
+    pname = "esp-idf-nvs-partition-gen";
+    version = "0.1.1";
+
+    src = fetchPypi {
+      inherit version;
+      pname = "esp_idf_nvs_partition_gen";
+      sha256 = "sha256-/Pb+cEQpT98yoxvGwLSFlJWNg/hcc55KjhzWz+isPBM=";
+    };
+    format = "pyproject";
+    doCheck = false;
+
+    propagatedBuildInputs = [
+      setuptools
+      cryptography
+    ];
+
+    meta = {
+      homepage = "https://github.com/espressif/esp-idf-nvs-partition-gen";
+    };
+  };
+
   freertos_gdb = buildPythonPackage rec {
     pname = "freertos-gdb";
     version = "1.0.2";
@@ -208,6 +230,25 @@ rec {
 
     meta = {
       homepage = "https://github.com/espressif/esp-idf-panic-decoder";
+    };
+  };
+
+  pyclang = buildPythonPackage rec {
+    pname = "pyclang";
+    version = "0.4.2";
+
+    src = fetchPypi {
+      inherit pname version;
+      sha256 = "sha256-vuDZ5yEhyDpCmkXoC+Gr2X5vMK5B46HnktcvBONjxXM=";
+    };
+
+    doCheck = false;
+
+    propagatedBuildInputs = [
+    ];
+
+    meta = {
+      homepage = "https://github.com/espressif/pyclang";
     };
   };
 }

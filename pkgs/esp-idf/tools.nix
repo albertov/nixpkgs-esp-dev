@@ -16,7 +16,7 @@ let
   toolFhsEnvTargetPackages = {
     xtensa-esp-elf-gdb = pkgs: (with pkgs; [ ]);
     riscv32-esp-elf-gdb = pkgs: (with pkgs; [ ]);
-    xtensa-esp32-elf = pkgs: (with pkgs; [ ]);
+    xtensa-esp-elf = pkgs: (with pkgs; [ ]);
     xtensa-esp32s2-elf = pkgs: (with pkgs; [ ]);
     xtensa-esp32s3-elf = pkgs: (with pkgs; [ ]);
     esp-clang = pkgs: (with pkgs; [ zlib libxml2 ]);
